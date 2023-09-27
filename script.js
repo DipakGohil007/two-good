@@ -49,7 +49,7 @@ gsap.to(".logo img", {
     scroller: "#main",
     start: "top 0",
     end: "top -5%",
-    scrub: true,
+    scrub: 1,
   },
 });
 
@@ -150,3 +150,28 @@ let cursorAnimation = () => {
 };
 
 cursorAnimation();
+
+let cursorSecondaryAnimation = () => {
+  document.addEventListener("mousemove", (dets) => {
+    gsap.to(".cursor-secondary", {
+      left: dets.x,
+      top: dets.y,
+    });
+  });
+
+  let descAnimated = document.querySelector("#desc-animated");
+
+  descAnimated.addEventListener("mouseenter", () => {
+    gsap.to(".cursor-secondary", {
+      transform: "translate(-50%, -50%) scale(1)",
+    });
+  });
+
+  descAnimated.addEventListener("mouseleave", () => {
+    gsap.to(".cursor-secondary", {
+      transform: "translate(-50%, -50%) scale(0)",
+    });
+  });
+};
+
+cursorSecondaryAnimation();
